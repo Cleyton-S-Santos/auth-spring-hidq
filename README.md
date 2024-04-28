@@ -1,4 +1,4 @@
 # User to test purpose
 
-### login: ADMIN 
+### login: ADMIN
 ### password: admin
