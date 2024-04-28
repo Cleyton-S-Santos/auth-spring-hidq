@@ -37,8 +37,8 @@ jobs:
       - name: Build Docker image
         run: docker build -t hdk-auth-api:${{ github.sha }} .
 
-      - name: Tag Docker image with branch name
-        run: docker tag hdk-auth-api hdk-auth-api:latest
+      - name: Tag Docker image with commit hash
+        run: docker tag hdk-auth-api hdk-auth-api:${{ github.sha }}
 
       - name: Push Docker image
         run: docker push creito/hdk-auth-api:${{ github.sha }}
