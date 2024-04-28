@@ -43,7 +43,7 @@ jobs:
           password: ${{ secrets.GIT_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t ${{env.IMAGE_NAME}} .
+        run: docker build -t ${{env.IMAGE_NAME}}:${{ github.sha }} .
 
       - name: Tag Docker image with commit hash
         run: docker tag ${{env.IMAGE_NAME}} ${{secrets.DOCKER_USERNAME}}/${{env.IMAGE_NAME}}:${{ github.sha }}
