@@ -1,7 +1,5 @@
-# Build stage
 FROM maven:3.6.3-openjdk-17 AS build
-COPY src /home/app/src
-COPY pom.xml /home/app/pom.xml
+COPY . .
 
 ARG DATABASE_URL
 ARG DATABASE_USERNAME
@@ -12,10 +10,9 @@ ENV ADDRESS=$HOST
 ENV DATABASE_USERNAME=$DATABASE_USERNAME
 ENV DATABASE_PASSWORD=$DATABASE_PASSWORD
 
-RUN mvn -f /home/app/pom.xml clean package
+RUN mvn clean package
 
-# Package stage
-FROM openjdk:17-alpine
-COPY --from=build /home/app/target/auth-0.0.1-SNAPSHOT.jar /usr/local/lib/demo.jar
+FROM openjdk:17
 EXPOSE 8081
-ENTRYPOINT ["java","-jar","/usr/local/lib/demo.jar"]
+COPY --from=build /target/auth-0.0.1-SNAPSHOT.jar app.jar
+ENTRYPOINT ["java", "-jar", "/app.jar"]
