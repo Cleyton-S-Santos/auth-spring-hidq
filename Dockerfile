@@ -1,7 +1,7 @@
 # Build stage
 FROM maven:3.6.3-openjdk-17 AS build
 COPY src /home/app/src
-COPY pom.xml /home/app
+COPY pom.xml /home/app/pom.xml
 RUN mvn -f /home/app/pom.xml clean package
 
 # Package stage
