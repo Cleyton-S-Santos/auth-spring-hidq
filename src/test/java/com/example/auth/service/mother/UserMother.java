@@ -10,7 +10,7 @@ import java.util.Collection;
 public class UserMother {
 
     public static User getValidUserBody(){
-        return new User("1", "login", "senha", UserRole.USER);
+        return new User(1L, "login", "senha", UserRole.USER);
     }
     public static UserDetails getUserDetailsValid(){
         return new UserDetails() {
