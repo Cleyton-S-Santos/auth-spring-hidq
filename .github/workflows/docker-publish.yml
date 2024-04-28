@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: verify secrets
-        run: echo "${{ secrets.DOCKER_USERNAME }}"
+        run: echo "::set-output name=secretTeste::${{ secrets.DOCKER_USERNAME }}"
         
       - name: Checkout repository
         uses: actions/checkout@v2
