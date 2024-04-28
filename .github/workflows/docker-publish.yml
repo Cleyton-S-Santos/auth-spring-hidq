@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - main
+env:
+  DOCKER_REGISTRY: docker.io
+  GIT_REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build:
@@ -11,7 +15,7 @@ jobs:
 
     steps:
       - name: verify secrets
-        run: echo "${{ secrets.DOCKER_USERNAME }} and ${{ secrets.DOCKER_PASSWORD }}"
+        run: echo "${{ secrets.DOCKER_USERNAME }} and ${{ secrets.DOCKER_TOKEN }}"
         
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -39,13 +43,15 @@ jobs:
           password: ${{ secrets.GIT_TOKEN }}
 
       - name: Build Docker image
-        run: docker build -t hdk-auth-api .
+        run: docker build -t ${{IMAGE_NAME}} .
 
       - name: Tag Docker image with commit hash
-        run: docker tag hdk-auth-api hdk-auth-api:${{ github.sha }}
+        run: docker tag ${{IMAGE_NAME}} ${{IMAGE_NAME}}:${{ github.sha }}
 
       - name: Push Docker image
-        run: docker push hdk-auth-api:${{ github.sha }}
+        run: docker push ${{IMAGE_NAME}}:${{ github.sha }}
 
       - name: Get Docker image new version
         run: echo "::set-output name=commit_hash::$(git rev-parse --short HEAD)"
+
+    
