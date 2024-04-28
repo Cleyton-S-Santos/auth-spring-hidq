@@ -13,8 +13,8 @@ jobs:
       - name: verify secrets
         run: echo "${{ secrets.DOCKER_USERNAME }} and ${{ secrets.DOCKER_PASSWORD }}"
 
-      - name: verify hash
-        run: echo "$${{ github.sha }} and ${{ github.ref }}"
+      - name: verify tag new docker image
+        run: echo "$${{ github.sha }}"
         
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -41,7 +41,7 @@ jobs:
         run: docker tag hdk-auth-api hdk-auth-api:latest
 
       - name: Push Docker image
-        run: docker push creito/hdk-auth-api:${{ github.sha }} ${{ github.ref }}
+        run: docker push creito/hdk-auth-api:${{ github.sha }}
 
       - name: Get Git commit hash
         run: echo "::set-output name=commit_hash::$(git rev-parse --short HEAD)"
