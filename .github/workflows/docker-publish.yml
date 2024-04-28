@@ -38,7 +38,7 @@ jobs:
         run: docker tag hdk-auth-api hdk-auth-api:${{ github.sha }}
 
       - name: Push Docker image
-        run: docker push creito/hdk-auth-api:${{ github.sha }}
+        run: docker push hdk-auth-api:${{ github.sha }}
 
       - name: Get Docker image new version
         run: echo "::set-output name=commit_hash::$(git rev-parse --short HEAD)"
