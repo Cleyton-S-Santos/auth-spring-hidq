@@ -1,10 +1,8 @@
 package com.example.auth.services;
 
 import com.example.auth.domain.user.AuthenticationDTO;
-import com.example.auth.domain.user.User;
 import com.example.auth.exceptions.CustomException;
 import com.example.auth.repositories.UserRepository;
-import org.flywaydb.core.internal.util.JsonUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;

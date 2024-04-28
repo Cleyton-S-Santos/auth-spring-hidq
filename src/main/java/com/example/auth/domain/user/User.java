@@ -1,5 +1,7 @@
 package com.example.auth.domain.user;
 
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
@@ -12,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-@Table(name = "users")
+@Table(name = "users", schema = "hdk_database")
 @Entity(name = "users")
 @Getter
 @NoArgsConstructor
@@ -20,8 +22,9 @@ import java.util.List;
 @EqualsAndHashCode(of = "id")
 public class User implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition= "serial")
+    private Long id;
     private String login;
     private String password;
     private UserRole role;
