@@ -10,6 +10,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: build-docker
+        run: mvn clean install -X
+        
       - name: verify secrets
         run: echo "${{ secrets.DOCKER_USERNAME }}"
         
