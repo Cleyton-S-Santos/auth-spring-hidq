@@ -35,7 +35,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t hdk-auth-api .
+        run: docker build -t hdk-auth-api:${{ github.sha }} .
 
       - name: Tag Docker image with branch name
         run: docker tag hdk-auth-api hdk-auth-api:latest
