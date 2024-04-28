@@ -1,0 +1,1 @@
+insert into USERS (ROLE, ID, LOGIN, PASSWORD) values (0, 1, 'ADMIN', '$2a$10$Yz/EdbhTRBPIGxCviOVYQu4Unh1Qf/7pRN2N1UrOx2CK.y.LCihRK');
